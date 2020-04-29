@@ -32,7 +32,7 @@ robot.behavior.set_head_angle(degrees(12.0))
 robot.behavior.say_text("Show me the item to identify. 3, 2, 1, SNAPP")
 image = robot.camera.capture_single_image()
 #change the path to where you want the picture to be saved
-image.raw_image.save('Pictures/capture.jpeg', 'JPEG')
+image.raw_image.save('capture.jpeg', 'JPEG')
 
 #object detection code below
 prediction = ImagePrediction()
@@ -40,8 +40,8 @@ prediction.setModelTypeAsResNet()
 prediction.setModelPath("resnet50_weights_tf_dim_ordering_tf_kernels.h5")
 prediction.loadModel()
 
-#change the path to where you picture is saved.
-predictions, percentage_probabilities = prediction.predictImage ("Pictures/capture.jpeg", result_count=1)
+#change the path to where you picture is saved. result_count returns number of possible results from 1-1000
+predictions, percentage_probabilities = prediction.predictImage ("capture.jpeg", result_count=1)
 for index in range(len(predictions)):
     s = (predictions[index])
     print(s.replace('_', ' '))
@@ -61,7 +61,7 @@ for index in range(len(predictions)):
 
     if (percentage_probabilities[index] <= 29) and (percentage_probabilities[index] >= 0):
         print("Thats tricky, is it a {}".format(s.replace('_', ' ')))
-#        robot.anim.play_animation_trigger('CubePounceLoseSession')
+        robot.anim.play_animation_trigger('CubePounceLoseSession')
         robot.behavior.say_text("Thats tricky, is it a {}".format(s.replace('_', ' ')))
         
     robot.disconnect()
