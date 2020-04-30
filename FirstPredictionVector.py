@@ -44,7 +44,7 @@ prediction.loadModel()
 predictions, percentage_probabilities = prediction.predictImage ("capture.jpeg", result_count=1)
 for index in range(len(predictions)):
     s = (predictions[index])
-    print(s.replace('_', ' '))
+    print(s.replace('_', ' ') , " : " , percentage_probabilities[index])
  
     if (percentage_probabilities[index] >= 90):
         print("That is definitely a {}".format(s.replace('_', ' ')))
