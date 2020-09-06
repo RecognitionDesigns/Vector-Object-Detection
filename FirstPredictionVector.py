@@ -24,7 +24,7 @@ from imageai.Prediction import ImagePrediction
 import os
 from PIL import Image, ImageStat
 
-robot = anki_vector.Robot('00703d7c')
+robot = anki_vector.Robot()
 robot.connect()
 robot.behavior.set_lift_height(0)
 robot.behavior.set_head_angle(degrees(12.0))
